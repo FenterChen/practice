@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .orange {
+            color: orange;
+        }
+
+        .purple {
+            color: purple;
+        }
+
+        span {
+            border: brown 2px solid;
+        }
+
+        span:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrap">
+            <h1>BMI值計算:</h1>
+            <p>BMI = 體重(公斤) / 身高2(公尺2)</p>
+            <p>例如：一個52公斤的人，身高是155公分，則BMI為 :</p>
+            <h2 class="blue">52(公斤)/1.552 ( 公尺2 )= 21.6</h2>
+            <h2 class="orange">體重正常範圍為 BMI=18.5～24 </h2>
+            <h2 class="purple">快看看自己的BMI是否在理想範圍吧!</h2>
+            <form>
+                <label for="height">身高: </label>
+                <input type="text" name="height" id="height">
+                <label for="height">cm</label>
+                <br>
+                <br>
+                <label for="weight">體重: </label>
+                <input type="text" name="weight" id="weight">
+                <label for="height">kg</label>
+                <br>
+                <br>
+                <span name="button" id="button">點我計算</span>
+            </form>
+            <div id="result"></div>
+            <div id="range"></div>
+        </div>
+    </div>
+    <script>
+        function calculate() {
+            let inputHeight = document.getElementById("height").value;
+            let inputWeight = document.getElementById("weight").value;
+            let calc = inputWeight / Math.pow(inputHeight / 100, 2);
+            let distinguish;
+            if (calc < 18.5) {
+                document.getElementById("result").innerHTML = "BMI值為: " + calc.toFixed(1) + "<br>" + "體重過輕";
+            } else if (calc >= 18.5 & calc < 24) {
+                document.getElementById("result").innerHTML = "BMI值為: " + calc.toFixed(1) + "<br>" + "正常範圍";
+            } else if (calc >= 24 & calc < 27) {
+                document.getElementById("result").innerHTML = "BMI值為: " + calc.toFixed(1) + "<br>" + "過重";
+            } else if (calc >= 27 & calc < 30) {
+                document.getElementById("result").innerHTML = "BMI值為: " + calc.toFixed(1) + "<br>" + "輕度肥胖";
+            } else if (calc >= 30 & calc < 35) {
+                document.getElementById("result").innerHTML = "BMI值為: " + calc.toFixed(1) + "<br>" + "中度肥胖";
+            } else if (calc == 0 || !calc) {
+                alert("輸入錯誤哦!");
+                document.getElementById("result").innerHTML = "";
+            }
+        }
+        function init() {
+            document.getElementById("button").onclick = calculate;
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</body>
+
+</html>
